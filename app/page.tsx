@@ -5,6 +5,7 @@ import HeroSection    from '@/components/HeroSection'
 import DetailsSection from '@/components/DetailsSection'
 import RSVPSection    from '@/components/RSVPSection'
 import MusicPlayer    from '@/components/MusicPlayer'
+import FloatingHearts from '@/components/FloatingHearts'
 
 export default function Home() {
   return (
@@ -49,6 +50,7 @@ export default function Home() {
       </footer>
 
       <MusicPlayer />
+      <FloatingHearts />
     </main>
   )
 }

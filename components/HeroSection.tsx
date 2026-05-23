@@ -4,54 +4,88 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import Image from 'next/image'
 
-// 4 asymmetric columns — flex values control proportional heights within each column.
-// Portrait (9:16) photos look best in the taller cells of cols 0–2.
-const COLS = [
-  { width: '23%', tiles: [
+// ── Desktop: 4 asymmetric columns ────────────────────────────────────────────
+// Varied column widths + different flex splits create portrait-shaped tall cells
+const COLS_DESKTOP = [
+  { width: '23%', sizes: '23vw', tiles: [
     { src: '/1.jpeg', flex: 60, delay: 0.00 },
     { src: '/4.jpeg', flex: 40, delay: 0.12 },
   ]},
-  { width: '28%', tiles: [
+  { width: '28%', sizes: '28vw', tiles: [
     { src: '/2.jpeg', flex: 45, delay: 0.06 },
     { src: '/5.jpeg', flex: 55, delay: 0.18 },
   ]},
-  { width: '26%', tiles: [
+  { width: '26%', sizes: '26vw', tiles: [
     { src: '/3.jpeg', flex: 65, delay: 0.10 },
     { src: '/6.jpeg', flex: 35, delay: 0.22 },
   ]},
-  { width: '23%', tiles: [
+  { width: '23%', sizes: '23vw', tiles: [
     { src: '/7.jpeg', flex: 34, delay: 0.04 },
     { src: '/8.jpeg', flex: 33, delay: 0.16 },
     { src: '/9.jpeg', flex: 33, delay: 0.28 },
   ]},
 ]
 
-// Floating hearts — precomputed positions to avoid hydration mismatch
-const HEARTS = [
-  { id: 0,  x: 7,  y: 70, size: 16, dur: 13, del: 0.0 },
-  { id: 1,  x: 18, y: 30, size: 11, dur: 10, del: 2.2 },
-  { id: 2,  x: 27, y: 83, size: 9,  dur: 15, del: 0.8 },
-  { id: 3,  x: 41, y: 15, size: 13, dur: 11, del: 3.5 },
-  { id: 4,  x: 54, y: 73, size: 8,  dur: 16, del: 1.3 },
-  { id: 5,  x: 67, y: 26, size: 14, dur: 9,  del: 4.1 },
-  { id: 6,  x: 77, y: 58, size: 10, dur: 13, del: 2.8 },
-  { id: 7,  x: 87, y: 21, size: 12, dur: 12, del: 0.5 },
-  { id: 8,  x: 91, y: 79, size: 15, dur: 10, del: 3.2 },
-  { id: 9,  x: 33, y: 50, size: 7,  dur: 14, del: 1.8 },
-  { id: 10, x: 50, y: 89, size: 11, dur: 8,  del: 4.5 },
-  { id: 11, x: 71, y: 43, size: 9,  dur: 11, del: 0.3 },
-  { id: 12, x: 14, y: 58, size: 8,  dur: 12, del: 5.0 },
+// ── Mobile: 3 columns, staggered heights ─────────────────────────────────────
+// Portrait phones are tall — 3×3 grid cells become nearly 9:16 naturally
+const COLS_MOBILE = [
+  { width: '33%', sizes: '33vw', tiles: [
+    { src: '/1.jpeg', flex: 42, delay: 0.00 },
+    { src: '/4.jpeg', flex: 32, delay: 0.14 },
+    { src: '/7.jpeg', flex: 26, delay: 0.28 },
+  ]},
+  { width: '36%', sizes: '36vw', tiles: [
+    { src: '/2.jpeg', flex: 34, delay: 0.06 },
+    { src: '/5.jpeg', flex: 40, delay: 0.20 },
+    { src: '/8.jpeg', flex: 26, delay: 0.34 },
+  ]},
+  { width: '31%', sizes: '31vw', tiles: [
+    { src: '/3.jpeg', flex: 44, delay: 0.10 },
+    { src: '/6.jpeg', flex: 30, delay: 0.24 },
+    { src: '/9.jpeg', flex: 26, delay: 0.38 },
+  ]},
 ]
 
-function Heart({ size }: { size: number }) {
+function Collage({ cols, className }: {
+  cols: typeof COLS_DESKTOP
+  className: string
+}) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
-      <path
-        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
-        fill="#A78BFA"
-        opacity="0.75"
-      />
-    </svg>
+    <div className={`absolute inset-0 ${className}`} style={{ gap: '2px' }} aria-hidden>
+      {cols.map((col, ci) => (
+        <div
+          key={ci}
+          className="flex flex-col h-full"
+          style={{ width: col.width, flexShrink: 0, gap: '2px' }}
+        >
+          {col.tiles.map(tile => (
+            <motion.div
+              key={tile.src}
+              className="relative overflow-hidden"
+              style={{ flex: `${tile.flex} 0 0%` }}
+              initial={{ opacity: 0, scale: 1.08 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2, delay: tile.delay, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Image
+                src={tile.src}
+                alt=""
+                fill
+                className="object-cover object-top"
+                sizes={col.sizes}
+                priority={ci < 2}
+                draggable={false}
+              />
+              {/* Overlay: right-click target is a <div>, not <img> — prevents "Copy Image" */}
+              <div
+                className="absolute inset-0 z-10"
+                onContextMenu={e => e.preventDefault()}
+              />
+            </motion.div>
+          ))}
+        </div>
+      ))}
+    </div>
   )
 }
 
@@ -86,51 +120,13 @@ export default function HeroSection() {
       style={{ contain: 'paint' }}
       aria-label="Hero"
     >
-      {/* ── Photo collage background ─────────────────────────────────── */}
-      {/* 4 flex columns — each divided into tall/short cells so portrait
-          photos display with faces visible (object-top anchors to head area) */}
-      <div
-        className="absolute inset-0 flex"
-        style={{ gap: '2px' }}
-        aria-hidden
-      >
-        {COLS.map((col, ci) => (
-          <div
-            key={ci}
-            className="flex flex-col h-full"
-            style={{ width: col.width, flexShrink: 0, gap: '2px' }}
-          >
-            {col.tiles.map(tile => (
-              <motion.div
-                key={tile.src}
-                className="relative overflow-hidden"
-                style={{ flex: `${tile.flex} 0 0%` }}
-                initial={{ opacity: 0, scale: 1.08 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.2, delay: tile.delay, ease: [0.22, 1, 0.36, 1] }}
-              >
-                <Image
-                  src={tile.src}
-                  alt=""
-                  fill
-                  className="object-cover object-top"
-                  sizes={col.width.replace('%', 'vw')}
-                  priority={ci < 2}
-                  draggable={false}
-                />
-                {/* Transparent overlay: right-click target is a div, not <img>,
-                    so the browser shows "Reload Page" instead of "Copy Image" */}
-                <div
-                  className="absolute inset-0 z-10"
-                  onContextMenu={e => e.preventDefault()}
-                />
-              </motion.div>
-            ))}
-          </div>
-        ))}
-      </div>
+      {/* ── Desktop collage: 4 asymmetric cols (hidden below sm) ─────── */}
+      <Collage cols={COLS_DESKTOP} className="hidden sm:flex" />
 
-      {/* ── Layered overlay ──────────────────────────────────────────── */}
+      {/* ── Mobile collage: 3 staggered cols (hidden above sm) ──────── */}
+      <Collage cols={COLS_MOBILE}  className="flex sm:hidden" />
+
+      {/* ── Cream overlay for text readability ───────────────────────── */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -140,25 +136,6 @@ export default function HeroSection() {
           `,
         }}
       />
-
-      {/* ── Floating hearts ──────────────────────────────────────────── */}
-      {HEARTS.map(h => (
-        <motion.div
-          key={h.id}
-          className="absolute pointer-events-none"
-          style={{ left: `${h.x}%`, top: `${h.y}%` }}
-          animate={{
-            y:      [0, -(h.size * 5), 0],
-            x:      [0, h.size * 1.2, -h.size * 0.8, 0],
-            rotate: [0, 8, -8, 0],
-            opacity:[0.1, 0.55, 0.1],
-            scale:  [0.75, 1.1, 0.75],
-          }}
-          transition={{ duration: h.dur, delay: h.del, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <Heart size={h.size} />
-        </motion.div>
-      ))}
 
       {/* ── Decorative double frame ──────────────────────────────────── */}
       <motion.div
