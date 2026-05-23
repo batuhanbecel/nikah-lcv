@@ -60,16 +60,16 @@ export default function RSVPSection() {
   }
 
   return (
-    <section ref={ref} id="rsvp" className="relative py-32 px-6 overflow-hidden">
+    <section ref={ref} id="rsvp" className="relative py-32 px-6 overflow-hidden" style={{ contain: 'layout' }}>
 
       {/* Top fade */}
       <div className="absolute top-0 inset-x-0 h-28 pointer-events-none"
         style={{ background: 'linear-gradient(to bottom, #FFFEF9, transparent)' }} />
 
-      {/* Soft blush glow — gives this section a slightly different warmth without a hard edge */}
-      <div className="absolute -top-20 -right-20 w-[500px] h-[500px] rounded-full pointer-events-none"
+      {/* Soft blush glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(243,232,255,0.50) 0%, transparent 70%)' }} />
-      <div className="absolute -bottom-20 -left-20 w-[420px] h-[420px] rounded-full pointer-events-none"
+      <div className="absolute bottom-0 left-0 w-[420px] h-[420px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(circle, rgba(237,233,254,0.45) 0%, transparent 70%)' }} />
 
       {/* Bottom fade into footer */}

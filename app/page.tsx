@@ -8,12 +8,9 @@ import MusicPlayer    from '@/components/MusicPlayer'
 
 export default function Home() {
   return (
-    /*
-     * Single cream base across the whole page.
-     * Sections are transparent — only their blob/orb layers add colour,
-     * which fade to transparent and never create a hard seam.
-     */
-    <main className="relative bg-cream text-plum-900 overflow-x-hidden">
+    /* No overflow-x-hidden here — handled on body in globals.css.
+       Having it on a non-root element can break fixed children & iOS scroll height. */
+    <main className="relative bg-cream text-plum-900">
       <Toaster
         position="bottom-center"
         toastOptions={{
@@ -38,16 +35,12 @@ export default function Home() {
       <DetailsSection />
       <RSVPSection />
 
-      {/* Footer */}
-      <footer className="py-20 flex flex-col items-center gap-4">
+      <footer className="py-16 flex flex-col items-center gap-4 bg-cream">
         <div className="flex items-center gap-4">
           <span className="h-px w-14 bg-gradient-to-r from-transparent to-plum-200" />
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <ellipse cx="10" cy="4"  rx="2.5" ry="4"   fill="#C4B5FD" opacity="0.8" />
-            <ellipse cx="16" cy="10" rx="4"   ry="2.5" fill="#C4B5FD" opacity="0.8" />
-            <ellipse cx="10" cy="16" rx="2.5" ry="4"   fill="#C4B5FD" opacity="0.8" />
-            <ellipse cx="4"  cy="10" rx="4"   ry="2.5" fill="#C4B5FD" opacity="0.8" />
-            <circle  cx="10" cy="10" r="3"              fill="#7C3AED" />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+              fill="#C4B5FD"/>
           </svg>
           <span className="h-px w-14 bg-gradient-to-l from-transparent to-plum-200" />
         </div>

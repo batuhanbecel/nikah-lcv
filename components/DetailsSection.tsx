@@ -93,7 +93,7 @@ export default function DetailsSection() {
   const { days, hours, minutes, seconds } = useCountdown(WEDDING_DATE)
 
   return (
-    <section ref={ref} id="details" className="relative py-32 px-6 overflow-hidden">
+    <section ref={ref} id="details" className="relative py-32 px-6 overflow-hidden" style={{ contain: 'layout' }}>
 
       {/* Cream edge fades */}
       <div className="absolute top-0 inset-x-0 h-28 pointer-events-none"

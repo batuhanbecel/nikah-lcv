@@ -5,10 +5,10 @@
 /* ── Base ─────────────────────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden; /* prevent horizontal bleed from animated blobs on mobile */
 }
 
 body {
+  /* overflow-x on body only (not html) — avoids iOS scroll-height miscalculation */
   overflow-x: hidden;
   background-color: #FFFEF9;
   color: #1E0E52;
@@ -36,22 +36,21 @@ body {
          focus:outline-none focus:border-plum-500 transition-all duration-300;
 }
 
-/* Number input — hide arrows */
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
 input[type='number'] { -moz-appearance: textfield; }
 
-/* ── Gradient text utility ────────────────────────────────────────────────── */
+/* ── Gradient text ────────────────────────────────────────────────────────── */
 .text-gradient {
   background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #7C3AED 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 3s linear infinite;
+  animation: grad-shimmer 3s linear infinite;
 }
 
-@keyframes shimmer {
+@keyframes grad-shimmer {
   0%   { background-position: 0% center; }
   100% { background-position: 200% center; }
 }
@@ -64,8 +63,8 @@ input[type='number'] { -moz-appearance: textfield; }
   border: 1px solid rgba(196, 181, 253, 0.3);
 }
 
-/* ── Sound-wave bar origin ────────────────────────────────────────────────── */
+/* ── Sound-wave bars ──────────────────────────────────────────────────────── */
 .bar { transform-origin: bottom; }
 
-/* ── Perspective for 3d letter animation ─────────────────────────────────── */
+/* ── Perspective helper ───────────────────────────────────────────────────── */
 .perspective { perspective: 800px; }
