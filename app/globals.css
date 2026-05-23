@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Base ─────────────────────────────────────────────────────────────────── */
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #FFFEF9;
+  color: #1E0E52;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Scrollbar ────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: #F5F3FF; }
+::-webkit-scrollbar-thumb  { background: #A78BFA; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #7C3AED; }
+
+/* ── Decorative rule ──────────────────────────────────────────────────────── */
+.rule-plum {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C4B5FD 40%, #C4B5FD 60%, transparent);
+}
+
+/* ── Form inputs ──────────────────────────────────────────────────────────── */
+.form-input {
+  @apply w-full bg-transparent border-b-2 border-plum-100 py-3 px-0
+         text-plum-900 placeholder-plum-300 font-dm text-sm tracking-wide
+         focus:outline-none focus:border-plum-500 transition-all duration-300;
+}
+
+/* Number input — hide arrows */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button { -webkit-appearance: none; }
+input[type='number'] { -moz-appearance: textfield; }
+
+/* ── Gradient text utility ────────────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, #7C3AED 0%, #A78BFA 50%, #7C3AED 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── Glass card ───────────────────────────────────────────────────────────── */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(196, 181, 253, 0.3);
+}
+
+/* ── Sound-wave bar origin ────────────────────────────────────────────────── */
+.bar { transform-origin: bottom; }
+
+/* ── Perspective for 3d letter animation ─────────────────────────────────── */
+.perspective { perspective: 800px; }
