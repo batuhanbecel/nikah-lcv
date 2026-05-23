@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 /* ── Base ─────────────────────────────────────────────────────────────────── */
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden; /* prevent horizontal bleed from animated blobs on mobile */
+}
 
 body {
+  overflow-x: hidden;
   background-color: #FFFEF9;
   color: #1E0E52;
   -webkit-font-smoothing: antialiased;
@@ -54,7 +58,7 @@ input[type='number'] { -moz-appearance: textfield; }
 
 /* ── Glass card ───────────────────────────────────────────────────────────── */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.72);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(196, 181, 253, 0.3);

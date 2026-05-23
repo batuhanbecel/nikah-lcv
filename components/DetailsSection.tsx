@@ -87,49 +87,6 @@ function FloralDivider() {
   )
 }
 
-// Google Maps official icon colours
-function GoogleMapsIcon({ size = 48 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 48 48" fill="none">
-      {/* Circle background */}
-      <circle cx="24" cy="24" r="22" fill="white" />
-      {/* G letter — Google colours */}
-      <path d="M35.5 24.3c0-.9-.1-1.7-.2-2.5H24v4.7h6.4c-.3 1.5-1.1 2.7-2.4 3.5v2.9h3.9c2.3-2.1 3.6-5.2 3.6-8.6z" fill="#4285F4"/>
-      <path d="M24 36c3.2 0 5.9-1.1 7.9-2.9l-3.9-2.9c-1.1.7-2.4 1.1-4 1.1-3.1 0-5.7-2.1-6.6-4.9h-4v3c2 3.9 6 6.6 10.6 6.6z" fill="#34A853"/>
-      <path d="M17.4 26.4c-.2-.7-.4-1.4-.4-2.1s.1-1.5.4-2.1v-3h-4C12.5 20.8 12 22.3 12 24s.5 3.2 1.4 4.6l4-3.2z" fill="#FBBC05"/>
-      <path d="M24 17c1.7 0 3.3.6 4.5 1.8l3.4-3.4C29.9 13.5 27.1 12 24 12c-4.6 0-8.6 2.6-10.6 6.5l4 3.1c.9-2.8 3.5-4.6 6.6-4.6z" fill="#EA4335"/>
-    </svg>
-  )
-}
-
-// Decorative map-grid background pattern (pure CSS/SVG, no iframe)
-function MapPattern() {
-  return (
-    <svg
-      className="absolute inset-0 w-full h-full opacity-[0.07]"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden
-    >
-      <defs>
-        <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
-          <path d="M 28 0 L 0 0 0 28" fill="none" stroke="#7C3AED" strokeWidth="0.8"/>
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)" />
-      {/* Fake road lines */}
-      <line x1="0" y1="40%" x2="100%" y2="45%"   stroke="#7C3AED" strokeWidth="2.5" opacity="0.25" />
-      <line x1="30%" y1="0" x2="35%"  y2="100%"  stroke="#7C3AED" strokeWidth="1.5" opacity="0.18" />
-      <line x1="65%" y1="0" x2="62%"  y2="100%"  stroke="#7C3AED" strokeWidth="2"   opacity="0.20" />
-      <line x1="0"   y1="72%" x2="100%" y2="68%" stroke="#7C3AED" strokeWidth="1.2" opacity="0.15" />
-      {/* Fake block fills */}
-      <rect x="36%" y="0"   width="26%" height="38%" rx="2" fill="#7C3AED" opacity="0.06" />
-      <rect x="0"   y="47%" width="28%" height="20%" rx="2" fill="#7C3AED" opacity="0.06" />
-      <rect x="67%" y="50%" width="33%" height="30%" rx="2" fill="#7C3AED" opacity="0.06" />
-    </svg>
-  )
-}
-
-// ── Main component ─────────────────────────────────────────────────────────────
 export default function DetailsSection() {
   const ref    = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-70px' })
@@ -143,14 +100,12 @@ export default function DetailsSection() {
         style={{ background: 'linear-gradient(to bottom, #FFFEF9, transparent)' }} />
       <div className="absolute bottom-0 inset-x-0 h-28 pointer-events-none"
         style={{ background: 'linear-gradient(to top, #FFFEF9, transparent)' }} />
-      {/* Background lavender glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                      w-[1000px] h-[700px] rounded-full pointer-events-none"
+                      w-[900px] h-[700px] rounded-full pointer-events-none"
         style={{ background: 'radial-gradient(ellipse, rgba(237,233,254,0.50) 0%, transparent 65%)' }} />
 
-      <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center gap-14">
+      <div className="relative z-10 max-w-xl mx-auto flex flex-col items-center gap-14">
 
-        {/* Label */}
         <motion.p custom={0} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
           className="font-dm text-[10px] uppercase tracking-ultrawide text-plum-500">
           Tören Detayları
@@ -160,121 +115,90 @@ export default function DetailsSection() {
           <FloralDivider />
         </motion.div>
 
-        {/* Date */}
         <motion.h2 custom={2} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
           className="font-cormorant font-light text-plum-900 text-center leading-none"
           style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)' }}>
           17 Ekim 2026
         </motion.h2>
 
-        {/* ── Two-column: Location + Directions ─────────────────────── */}
+        {/* ── Single location + directions card ─────────────────────── */}
         <motion.div custom={3} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
-          className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 items-stretch">
+          className="w-full glass rounded-2xl px-8 py-8 flex flex-col items-center gap-5
+                     text-center shadow-xl shadow-plum-200/30">
 
-          {/* Location card */}
-          <div className="glass rounded-2xl px-8 py-8 flex flex-col items-center justify-center
-                          gap-4 text-center shadow-xl shadow-plum-200/30">
-            {/* Pin icon */}
-            <svg width="22" height="26" viewBox="0 0 22 26" fill="none">
-              <path d="M11 0C4.925 0 0 4.925 0 11c0 8.25 11 15 11 15s11-6.75 11-15C22 4.925 17.075 0 11 0Z" fill="#EDE9FE"/>
-              <path d="M11 1C5.477 1 1 5.477 1 11c0 7.7 10 13.8 10 13.8S21 18.7 21 11C21 5.477 16.523 1 11 1Z" stroke="#A78BFA" strokeWidth="1"/>
-              <circle cx="11" cy="11" r="4" fill="#7C3AED"/>
-              <circle cx="11" cy="11" r="2" fill="#A78BFA"/>
-            </svg>
+          {/* Pin icon */}
+          <svg width="22" height="26" viewBox="0 0 22 26" fill="none">
+            <path d="M11 0C4.925 0 0 4.925 0 11c0 8.25 11 15 11 15s11-6.75 11-15C22 4.925 17.075 0 11 0Z" fill="#EDE9FE"/>
+            <path d="M11 1C5.477 1 1 5.477 1 11c0 7.7 10 13.8 10 13.8S21 18.7 21 11C21 5.477 16.523 1 11 1Z" stroke="#A78BFA" strokeWidth="1"/>
+            <circle cx="11" cy="11" r="4" fill="#7C3AED"/>
+            <circle cx="11" cy="11" r="2" fill="#A78BFA"/>
+          </svg>
 
-            <div className="flex flex-col gap-1">
-              <p className="font-cormorant text-2xl sm:text-3xl italic font-light text-plum-800">
-                Beykoz Belediyesi
-              </p>
-              <p className="font-cormorant text-xl font-light text-plum-600">Nikah Salonu</p>
-            </div>
-
-            <div className="h-px w-16 bg-gradient-to-r from-transparent via-plum-200 to-transparent" />
-
-            <p className="font-dm text-[10px] uppercase tracking-superwide text-plum-500">
-              İstanbul, Türkiye
+          <div className="flex flex-col gap-1">
+            <p className="font-cormorant text-2xl sm:text-3xl italic font-light text-plum-800">
+              Beykoz Belediyesi
             </p>
-
-            <div className="flex items-center gap-2 px-5 py-2 rounded-full bg-plum-50">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <circle cx="7" cy="7" r="6" stroke="#A78BFA" strokeWidth="1.2"/>
-                <path d="M7 4V7.5L9.5 9" stroke="#7C3AED" strokeWidth="1.3" strokeLinecap="round"/>
-              </svg>
-              <span className="font-dm text-[10px] uppercase tracking-superwide text-plum-600">
-                Saat 14:00
-              </span>
-            </div>
+            <p className="font-cormorant text-xl font-light text-plum-600">Nikah Salonu</p>
           </div>
 
-          {/* Directions card */}
-          <div className="glass rounded-2xl overflow-hidden shadow-xl shadow-plum-200/30
-                          flex flex-col items-center justify-center gap-7 px-8 py-10 relative">
-            {/* Decorative map pattern background */}
-            <MapPattern />
+          <div className="h-px w-20 bg-gradient-to-r from-transparent via-plum-200 to-transparent" />
 
-            <div className="relative z-10 flex flex-col items-center gap-7 w-full">
-              {/* Google Maps icon */}
-              <motion.div
-                animate={{ y: [0, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                className="drop-shadow-md"
-              >
-                <GoogleMapsIcon size={56} />
-              </motion.div>
+          <p className="font-dm text-[10px] uppercase tracking-superwide text-plum-500">
+            İstanbul, Türkiye
+          </p>
 
-              {/* Address text */}
-              <div className="flex flex-col items-center gap-1 text-center">
-                <p className="font-dm text-[11px] uppercase tracking-superwide text-plum-500">
-                  Adres
-                </p>
-                <p className="font-cormorant text-lg font-light text-plum-800 leading-snug">
-                  Beykoz Belediyesi Nikah Salonu
-                </p>
-                <p className="font-dm text-[11px] text-plum-400 tracking-wide">
-                  Beykoz, İstanbul
-                </p>
-              </div>
+          {/* Time badge */}
+          <div className="flex items-center gap-2 px-5 py-2 rounded-full bg-plum-50">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <circle cx="7" cy="7" r="6" stroke="#A78BFA" strokeWidth="1.2"/>
+              <path d="M7 4V7.5L9.5 9" stroke="#7C3AED" strokeWidth="1.3" strokeLinecap="round"/>
+            </svg>
+            <span className="font-dm text-[10px] uppercase tracking-superwide text-plum-600">
+              Saat 14:00
+            </span>
+          </div>
 
-              {/* Primary CTA */}
-              <a
-                href={MAP_DIRECTIONS}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative w-full flex items-center justify-center gap-2.5
-                           rounded-2xl py-3.5 overflow-hidden
-                           font-dm text-[11px] uppercase tracking-superwide text-white
-                           transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-                style={{
-                  background: 'linear-gradient(135deg, #5B21B6 0%, #7C3AED 50%, #A78BFA 100%)',
-                  boxShadow: '0 8px 24px rgba(124,58,237,0.30)',
-                }}
-              >
-                {/* Shimmer */}
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
-                                 -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-                {/* Navigation arrow icon */}
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="relative">
-                  <path d="M2 8L14 2L8 14L7 9L2 8Z" fill="white" stroke="white" strokeWidth="0.5"
-                    strokeLinejoin="round"/>
-                </svg>
-                <span className="relative">Yol Tarifi Al</span>
-              </a>
+          <div className="h-px w-20 bg-gradient-to-r from-transparent via-plum-100 to-transparent" />
 
-              {/* Secondary: open in maps */}
-              <a
-                href={MAP_VIEW}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-1.5 font-dm text-[10px] uppercase tracking-superwide
-                           text-plum-400 hover:text-plum-600 transition-colors duration-200"
-              >
-                <span>Google Maps&apos;te Gör</span>
-                <svg width="9" height="9" viewBox="0 0 9 9" fill="none">
-                  <path d="M1.5 7.5L7.5 1.5M7.5 1.5H3.5M7.5 1.5V5.5"
-                    stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-            </div>
+          {/* Direction buttons */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+            <a
+              href={MAP_DIRECTIONS}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex-1 w-full sm:w-auto flex items-center justify-center gap-2
+                         rounded-xl py-3 overflow-hidden font-dm text-[11px] uppercase tracking-superwide
+                         text-white transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
+              style={{
+                background: 'linear-gradient(135deg, #5B21B6 0%, #7C3AED 50%, #A78BFA 100%)',
+                boxShadow: '0 6px 20px rgba(124,58,237,0.28)',
+              }}
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
+                               -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="relative">
+                <path d="M1.5 12.5L12.5 1.5M12.5 1.5H5.5M12.5 1.5V8.5"
+                  stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M7 7L2 12" stroke="white" strokeWidth="1.2" strokeLinecap="round" opacity="0.6"/>
+              </svg>
+              <span className="relative">Yol Tarifi Al</span>
+            </a>
+
+            <a
+              href={MAP_VIEW}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-1.5 px-5 py-3 rounded-xl w-full sm:w-auto
+                         border border-plum-100 font-dm text-[11px] uppercase tracking-superwide
+                         text-plum-500 hover:text-plum-700 hover:border-plum-300
+                         transition-all duration-200"
+            >
+              <span>Haritada Gör</span>
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                <path d="M1.5 8.5L8.5 1.5M8.5 1.5H4M8.5 1.5V6"
+                  stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
         </motion.div>
 
