@@ -87,8 +87,8 @@ export default function RSVPSection() {
           <motion.hr custom={1} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
             className="rule-plum w-20" />
           <motion.h2 custom={2} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
-            className="font-cormorant font-light text-plum-900 text-center"
-            style={{ fontSize: 'clamp(2rem, 6vw, 3.2rem)' }}>
+            className="font-cormorant font-light text-plum-900 text-center whitespace-nowrap"
+            style={{ fontSize: 'clamp(1.4rem, 5vw, 3.2rem)' }}>
             Bizi Onurlandırır mısınız?
           </motion.h2>
           <motion.p custom={3} variants={fadeUp} initial="hidden" animate={inView ? 'visible' : 'hidden'}
