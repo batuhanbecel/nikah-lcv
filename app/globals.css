@@ -70,28 +70,42 @@ body.cursor-hidden [role="button"] {
 }
 
 .site-main {
+  position: relative;
   background:
-    radial-gradient(circle at 50% 6%, rgba(126, 78, 226, 0.25), transparent 30rem),
-    radial-gradient(circle at 18% 42%, rgba(184, 140, 255, 0.1), transparent 24rem),
-    radial-gradient(circle at 86% 66%, rgba(111, 61, 197, 0.16), transparent 28rem),
+    radial-gradient(circle at 50% 6%, rgba(126, 78, 226, 0.27), transparent 32rem),
+    radial-gradient(circle at 18% 42%, rgba(184, 140, 255, 0.12), transparent 26rem),
+    radial-gradient(circle at 86% 66%, rgba(111, 61, 197, 0.17), transparent 30rem),
+    radial-gradient(circle at 50% 88%, rgba(255, 255, 255, 0.06), transparent 28rem),
     linear-gradient(180deg, #090511 0%, #0b0612 30%, #10091b 58%, #090511 100%);
+}
+
+.site-main::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.09), transparent 18rem),
+    radial-gradient(circle at 78% 35%, rgba(184, 140, 255, 0.12), transparent 20rem),
+    linear-gradient(115deg, transparent 0%, rgba(255, 255, 255, 0.035) 44%, transparent 72%);
+  mix-blend-mode: screen;
 }
 
 .section-veil {
   position: absolute;
-  inset: -18% 0;
+  inset: -28% 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 50% 12%, rgba(184, 140, 255, 0.11), transparent 30rem),
-    linear-gradient(180deg, transparent 0%, rgba(184, 140, 255, 0.045) 48%, transparent 100%);
-  mask-image: linear-gradient(180deg, transparent, black 18%, black 82%, transparent);
+    radial-gradient(circle at 50% 18%, rgba(184, 140, 255, 0.105), transparent 32rem),
+    radial-gradient(circle at 18% 76%, rgba(255, 255, 255, 0.035), transparent 24rem);
 }
 
 .floating-hearts {
   pointer-events: none;
-  position: fixed;
+  position: absolute;
   inset: 0;
-  z-index: 12;
+  z-index: 2;
   overflow: hidden;
 }
 
@@ -147,12 +161,12 @@ body.cursor-hidden [role="button"] {
   }
 
   35% {
-    transform: translate3d(var(--heart-drift), -38px, 0) scale(1.18);
+    transform: translate3d(var(--heart-drift), -86px, 0) scale(1.18);
     opacity: 0.52;
   }
 
   68% {
-    transform: translate3d(0, 34px, 0) scale(0.92);
+    transform: translate3d(0, -148px, 0) scale(0.92);
     opacity: 0.32;
   }
 }
@@ -190,6 +204,12 @@ body.cursor-hidden [role="button"] {
 .section-shell {
   width: min(1180px, calc(100% - 32px));
   margin-inline: auto;
+}
+
+.site-main > section,
+.site-main > footer {
+  position: relative;
+  z-index: 5;
 }
 
 @media (max-width: 768px) {

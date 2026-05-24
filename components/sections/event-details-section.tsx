@@ -33,10 +33,14 @@ export function EventDetailsSection() {
 
         <div className="mt-14 grid gap-4 md:grid-cols-3">
           {details.map((item) => (
-            <motion.div key={item.label} variants={motionItemVariants} className="glass dark-panel rounded-2xl p-6 text-white md:p-7">
-              <item.icon className="h-6 w-6 text-purple" />
-              <p className="mt-6 text-sm text-white/46">{item.label}</p>
-              <p className="mt-2 font-serif text-3xl">{item.value}</p>
+            <motion.div
+              key={item.label}
+              variants={motionItemVariants}
+              className="glass dark-panel flex min-h-44 flex-col items-center justify-center rounded-2xl p-6 text-center text-white md:p-7"
+            >
+              <item.icon className="h-6 w-6 text-purple drop-shadow-[0_0_18px_rgba(184,140,255,0.38)]" />
+              <p className="mt-5 text-sm text-white/46">{item.label}</p>
+              <p className="mt-2 font-serif text-3xl leading-tight">{item.value}</p>
             </motion.div>
           ))}
         </div>

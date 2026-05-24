@@ -113,9 +113,9 @@ export function RsvpSection() {
                 placeholder="05xx xxx xx xx"
               />
             </div>
-            <div className="rounded-2xl border border-white/12 bg-white/[0.06] p-4">
+            <div className="rounded-2xl border border-white/12 bg-white/[0.06] p-4 md:col-span-2">
               <Label htmlFor="afterParty" className="block">After Party Katılımı</Label>
-              <div className="mt-4 flex items-center justify-between">
+              <div className="mt-4 flex min-h-12 items-center justify-between gap-5 rounded-full border border-white/10 bg-white/[0.045] px-5">
                 <span className="text-sm text-white/58">{form.afterParty ? "Katılıyorum" : "Katılmıyorum"}</span>
                 <Switch
                   id="afterParty"

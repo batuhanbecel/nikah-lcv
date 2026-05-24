@@ -54,13 +54,14 @@ function HeroFrame({ image, index, smoothX, parallaxX, parallaxY, reduceMotion }
 
   return (
     <motion.div
-      className={`absolute overflow-hidden rounded-[1.65rem] border border-white/18 bg-black/20 shadow-[0_30px_90px_rgba(0,0,0,0.48)] ${
+      className={`absolute ${
         frames[index].className
       } ${index > 3 ? "hidden md:block" : ""}`}
       style={{
         x: reduceMotion ? 0 : frameX,
         y: reduceMotion ? 0 : index % 2 ? parallaxY : parallaxX,
-        zIndex: 5 + index
+        zIndex: 5 + index,
+        filter: "drop-shadow(0 30px 70px rgba(0,0,0,0.34))"
       }}
       initial={reduceMotion ? { opacity: 0.78 } : { opacity: 0, scale: 1.08, y: index % 2 ? 28 : -28 }}
       animate={{
@@ -74,16 +75,23 @@ function HeroFrame({ image, index, smoothX, parallaxX, parallaxY, reduceMotion }
         y: { duration: 8 + index * 0.8, repeat: Infinity, ease: "easeInOut" }
       }}
     >
-      <Image
-        src={image.src}
-        alt={image.alt}
-        fill
-        priority={index < 3}
-        sizes="(max-width: 768px) 50vw, 24vw"
-        className={`object-cover contrast-[1.08] saturate-[1.2] ${frames[index].position}`}
+      <motion.div
+        className="absolute -inset-7 rounded-[2.2rem] bg-[radial-gradient(circle,rgba(255,255,255,0.2),rgba(184,140,255,0.22)_36%,transparent_68%)] blur-2xl"
+        animate={{ opacity: reduceMotion ? 0.38 : [0.24, 0.48, 0.24], scale: reduceMotion ? 1 : [0.94, 1.06, 0.94] }}
+        transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/26 via-transparent to-white/8" />
-      <div className="absolute inset-0 ring-1 ring-inset ring-white/20" />
+      <div className="relative h-full w-full overflow-hidden rounded-[1.65rem] border border-white/18 bg-black/20 shadow-[0_34px_110px_rgba(0,0,0,0.42)]">
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          priority={index < 3}
+          sizes="(max-width: 768px) 50vw, 24vw"
+          className={`object-cover contrast-[1.08] saturate-[1.22] ${frames[index].position}`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-white/10" />
+        <div className="absolute inset-0 ring-1 ring-inset ring-white/20" />
+      </div>
     </motion.div>
   );
 }
@@ -98,7 +106,7 @@ export function HeroSection() {
   const parallaxY = useTransform(smoothY, [-0.5, 0.5], [-18, 18]);
   return (
     <section
-      className="relative grid min-h-screen place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_34%,rgba(126,78,226,0.24),transparent_28rem),linear-gradient(180deg,#090511_0%,#120a1f_52%,#07050d_100%)] text-white"
+      className="relative grid min-h-[108svh] place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_34%,rgba(126,78,226,0.24),transparent_28rem),linear-gradient(180deg,#090511_0%,#120a1f_48%,#07050d_100%)] text-white"
       onMouseMove={(eventMove) => {
         if (reduceMotion) return;
         const rect = eventMove.currentTarget.getBoundingClientRect();
@@ -120,9 +128,9 @@ export function HeroSection() {
         ))}
       </div>
 
-      <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_48%,rgba(7,5,13,0.5),rgba(7,5,13,0.24)_32%,transparent_58%),linear-gradient(180deg,rgba(7,5,13,0.22),rgba(7,5,13,0.42))]" />
+      <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_48%,rgba(7,5,13,0.46),rgba(7,5,13,0.22)_32%,transparent_58%),linear-gradient(180deg,rgba(7,5,13,0.2),rgba(7,5,13,0.4))]" />
       <div className="absolute inset-x-0 top-0 z-20 h-44 bg-gradient-to-b from-black/42 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 z-20 h-56 bg-gradient-to-t from-[#07050d] via-[#07050d]/72 to-transparent" />
+      <div className="absolute inset-x-0 -bottom-72 z-20 h-[36rem] bg-gradient-to-b from-transparent via-[#07050d]/88 to-[#07050d]" />
 
       <motion.div
         variants={stagger}
@@ -135,13 +143,14 @@ export function HeroSection() {
         </motion.p>
         <motion.h1
           variants={fadeUp}
-          className="font-serif text-[clamp(3.9rem,18vw,12rem)] font-semibold leading-[0.84] tracking-normal text-white drop-shadow-[0_20px_46px_rgba(0,0,0,0.62)] sm:text-[clamp(4.5rem,14vw,12rem)]"
+          className="font-serif text-[clamp(3.15rem,13vw,8.4rem)] font-semibold leading-[0.78] tracking-normal text-white drop-shadow-[0_20px_46px_rgba(0,0,0,0.62)] sm:text-[clamp(4rem,10vw,8.8rem)]"
         >
-          {event.couple}
+          <span className="block">Beyza</span>
+          <span className="my-1 block text-[0.54em] leading-none text-purple drop-shadow-[0_0_28px_rgba(184,140,255,0.34)] sm:my-2">
+            &
+          </span>
+          <span className="block">Batuhan</span>
         </motion.h1>
-        <motion.p variants={fadeUp} className="mx-auto mt-7 max-w-2xl font-serif text-2xl leading-tight text-white/78 sm:text-3xl md:text-5xl">
-          {event.tagline}
-        </motion.p>
         <motion.div variants={fadeUp} className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 text-sm leading-6 text-white/68 md:flex-row">
           <span className="inline-flex items-center justify-center gap-2">
             <CalendarDays className="h-4 w-4 text-purple" />

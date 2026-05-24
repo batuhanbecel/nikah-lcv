@@ -3,16 +3,18 @@
 import type { CSSProperties } from "react";
 
 const hearts = [
-  { left: "6%", top: "18%", size: 12, delay: "-2s", duration: "16s", drift: "34px", blur: "2px" },
-  { left: "17%", top: "72%", size: 8, delay: "-9s", duration: "20s", drift: "-28px", blur: "6px" },
-  { left: "29%", top: "36%", size: 5, delay: "-5s", duration: "18s", drift: "22px", blur: "4px" },
-  { left: "43%", top: "82%", size: 14, delay: "-12s", duration: "24s", drift: "-42px", blur: "8px" },
-  { left: "56%", top: "16%", size: 7, delay: "-7s", duration: "19s", drift: "26px", blur: "5px" },
-  { left: "68%", top: "64%", size: 11, delay: "-3s", duration: "21s", drift: "-30px", blur: "3px" },
-  { left: "79%", top: "29%", size: 6, delay: "-14s", duration: "17s", drift: "24px", blur: "6px" },
-  { left: "91%", top: "78%", size: 13, delay: "-10s", duration: "23s", drift: "-36px", blur: "7px" },
-  { left: "11%", top: "48%", size: 4, delay: "-16s", duration: "15s", drift: "20px", blur: "5px" },
-  { left: "87%", top: "9%", size: 9, delay: "-6s", duration: "22s", drift: "-24px", blur: "4px" }
+  { left: "6%", top: "8%", size: 10, delay: "-2s", duration: "18s", drift: "34px", blur: "2px" },
+  { left: "17%", top: "24%", size: 7, delay: "-9s", duration: "21s", drift: "-28px", blur: "6px" },
+  { left: "29%", top: "41%", size: 5, delay: "-5s", duration: "19s", drift: "22px", blur: "4px" },
+  { left: "43%", top: "59%", size: 12, delay: "-12s", duration: "24s", drift: "-42px", blur: "8px" },
+  { left: "56%", top: "16%", size: 7, delay: "-7s", duration: "20s", drift: "26px", blur: "5px" },
+  { left: "68%", top: "71%", size: 10, delay: "-3s", duration: "23s", drift: "-30px", blur: "3px" },
+  { left: "79%", top: "34%", size: 6, delay: "-14s", duration: "17s", drift: "24px", blur: "6px" },
+  { left: "91%", top: "86%", size: 11, delay: "-10s", duration: "25s", drift: "-36px", blur: "7px" },
+  { left: "11%", top: "50%", size: 4, delay: "-16s", duration: "16s", drift: "20px", blur: "5px" },
+  { left: "87%", top: "5%", size: 8, delay: "-6s", duration: "22s", drift: "-24px", blur: "4px" },
+  { left: "22%", top: "78%", size: 6, delay: "-13s", duration: "20s", drift: "28px", blur: "5px" },
+  { left: "74%", top: "53%", size: 5, delay: "-18s", duration: "18s", drift: "-18px", blur: "4px" }
 ];
 
 export function FloatingHearts() {

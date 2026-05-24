@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import { Toaster } from "sonner";
 import { CustomCursor } from "@/components/custom-cursor";
-import { FloatingHearts } from "@/components/floating-hearts";
 import { GrainOverlay } from "@/components/grain-overlay";
 import { MusicPlayer } from "@/components/music-player";
 import { siteConfig } from "@/lib/event";
@@ -72,7 +71,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="tr" className={`${serif.variable} ${sans.variable}`}>
       <body>
         {children}
-        <FloatingHearts />
         <MusicPlayer />
         <CustomCursor />
         <GrainOverlay />
