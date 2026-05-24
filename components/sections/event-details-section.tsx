@@ -19,10 +19,11 @@ export function EventDetailsSection() {
   const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
 
   return (
-    <MotionSection id="details" className="bg-[linear-gradient(180deg,#10091b,#08050d)]">
+    <MotionSection id="details" className="overflow-hidden">
+      <div className="section-veil" aria-hidden="true" />
       <motion.div
         style={{ y }}
-        className="absolute inset-x-0 top-20 h-72 bg-[radial-gradient(circle_at_50%_50%,rgba(184,140,255,0.16),transparent_62%)]"
+        className="absolute inset-x-0 top-20 h-72 bg-[radial-gradient(circle_at_50%_50%,rgba(184,140,255,0.13),transparent_62%)]"
       />
       <div className="section-shell relative" ref={ref}>
         <motion.div variants={motionItemVariants} className="mx-auto max-w-3xl text-center">

@@ -33,9 +33,7 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(95, 58, 160, 0.24), transparent 34rem),
-    linear-gradient(180deg, #0b0714 0%, #07050d 54%, #0e0818 100%);
+  background: #07050d;
   color: var(--foreground);
   font-family: var(--font-sans), Arial, sans-serif;
 }
@@ -69,6 +67,107 @@ body.cursor-hidden [role="button"] {
   border-color: rgba(255, 255, 255, 0.14);
   background: rgba(17, 10, 29, 0.94);
   box-shadow: 0 24px 80px rgba(0, 0, 0, 0.44);
+}
+
+.site-main {
+  background:
+    radial-gradient(circle at 50% 6%, rgba(126, 78, 226, 0.25), transparent 30rem),
+    radial-gradient(circle at 18% 42%, rgba(184, 140, 255, 0.1), transparent 24rem),
+    radial-gradient(circle at 86% 66%, rgba(111, 61, 197, 0.16), transparent 28rem),
+    linear-gradient(180deg, #090511 0%, #0b0612 30%, #10091b 58%, #090511 100%);
+}
+
+.section-veil {
+  position: absolute;
+  inset: -18% 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 12%, rgba(184, 140, 255, 0.11), transparent 30rem),
+    linear-gradient(180deg, transparent 0%, rgba(184, 140, 255, 0.045) 48%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent, black 18%, black 82%, transparent);
+}
+
+.floating-hearts {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  left: var(--heart-left);
+  top: var(--heart-top);
+  width: var(--heart-size);
+  height: var(--heart-size);
+  opacity: 0.42;
+  transform: translate3d(0, 0, 0);
+  animation: heart-drift var(--heart-duration) ease-in-out infinite;
+  animation-delay: var(--heart-delay);
+}
+
+.floating-heart span,
+.floating-heart span::before,
+.floating-heart span::after {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(184, 140, 255, 0.78);
+}
+
+.floating-heart span {
+  position: relative;
+  border-radius: 24% 24% 18% 18%;
+  box-shadow: 0 0 24px rgba(184, 140, 255, 0.22);
+  transform: rotate(45deg);
+  animation: heart-focus 7s ease-in-out infinite;
+}
+
+.floating-heart span::before,
+.floating-heart span::after {
+  content: "";
+  position: absolute;
+  border-radius: 999px;
+}
+
+.floating-heart span::before {
+  left: -48%;
+}
+
+.floating-heart span::after {
+  top: -48%;
+}
+
+@keyframes heart-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.78);
+    opacity: 0.18;
+  }
+
+  35% {
+    transform: translate3d(var(--heart-drift), -38px, 0) scale(1.18);
+    opacity: 0.52;
+  }
+
+  68% {
+    transform: translate3d(0, 34px, 0) scale(0.92);
+    opacity: 0.32;
+  }
+}
+
+@keyframes heart-focus {
+  0%,
+  100% {
+    filter: blur(var(--heart-blur));
+    transform: rotate(45deg) scale(0.88);
+  }
+
+  48% {
+    filter: blur(0);
+    transform: rotate(45deg) scale(1.22);
+  }
 }
 
 .grain {
@@ -117,5 +216,9 @@ body.cursor-hidden [role="button"] {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .floating-hearts {
+    display: none;
   }
 }

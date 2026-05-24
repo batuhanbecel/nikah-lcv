@@ -53,7 +53,8 @@ export function RsvpSection() {
   };
 
   return (
-    <MotionSection id="rsvp" className="bg-[linear-gradient(180deg,#08050d,#120a1f)]">
+    <MotionSection id="rsvp" className="overflow-hidden">
+      <div className="section-veil" aria-hidden="true" />
       <div className="section-shell grid items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
         <motion.div variants={motionItemVariants}>
           <h2 className="font-serif text-5xl leading-tight text-white md:text-7xl">Yanımızda olacağınızı bilmek isteriz.</h2>
@@ -85,7 +86,7 @@ export function RsvpSection() {
                 value={form.surname}
                 onChange={(eventChange) => setForm((current) => ({ ...current, surname: eventChange.target.value }))}
                 className="mt-2"
-                placeholder="Yılmaz"
+                placeholder="Becel"
               />
             </div>
             <div>
