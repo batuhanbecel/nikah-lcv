@@ -1,31 +1,45 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
 
-const APPS_SCRIPT_URL = process.env.APPS_SCRIPT_URL ?? ''
+type RsvpPayload = {
+  name?: string;
+  surname?: string;
+  guestCount?: number;
+  afterParty?: boolean;
+};
 
-export async function POST(request: NextRequest) {
-  if (!APPS_SCRIPT_URL) {
-    return NextResponse.json({ success: false, message: 'APPS_SCRIPT_URL not configured' }, { status: 500 })
+export async function POST(request: Request) {
+  const payload = (await request.json()) as RsvpPayload;
+  const name = payload.name?.trim();
+  const surname = payload.surname?.trim();
+  const guestCount = Number(payload.guestCount);
+
+  if (!name || !surname || !Number.isInteger(guestCount) || guestCount < 1 || guestCount > 10) {
+    return NextResponse.json({ message: "Lütfen tüm alanları doğru doldurun." }, { status: 400 });
   }
 
-  try {
-    const body = await request.json()
+  const webhookUrl = process.env.GOOGLE_APPS_SCRIPT_WEBHOOK_URL;
 
-    const gasRes = await fetch(APPS_SCRIPT_URL, {
-      method:   'POST',
-      redirect: 'follow',
-      headers:  { 'Content-Type': 'text/plain;charset=UTF-8' },
-      body:     JSON.stringify(body),
+  if (!webhookUrl) {
+    return NextResponse.json({ message: "RSVP servisi henüz yapılandırılmadı." }, { status: 500 });
+  }
+
+  const response = await fetch(webhookUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      timestamp: new Date().toISOString(),
+      name,
+      surname,
+      guestCount,
+      afterParty: payload.afterParty ? "Evet" : "Hayır"
     })
+  });
 
-    const text = await gasRes.text()
-
-    try {
-      return NextResponse.json(JSON.parse(text))
-    } catch {
-      // Apps Script returned non-JSON — treat as success if HTTP was ok
-      return NextResponse.json({ success: gasRes.ok })
-    }
-  } catch (err) {
-    return NextResponse.json({ success: false, message: String(err) }, { status: 500 })
+  if (!response.ok) {
+    return NextResponse.json({ message: "Davet yanıtı kaydedilemedi." }, { status: 502 });
   }
+
+  return NextResponse.json({ message: "Davet yanıtınız alındı." });
 }
