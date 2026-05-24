@@ -61,31 +61,26 @@ function HeroFrame({ image, index, smoothX, parallaxX, parallaxY, reduceMotion }
         x: reduceMotion ? 0 : frameX,
         y: reduceMotion ? 0 : index % 2 ? parallaxY : parallaxX,
         zIndex: 5 + index,
-        filter: "drop-shadow(0 38px 92px rgba(0,0,0,0.34)) drop-shadow(0 0 34px rgba(184,140,255,0.18))"
+        willChange: reduceMotion ? "auto" : "transform"
       }}
       initial={reduceMotion ? { opacity: 0.78 } : { opacity: 0, scale: 1.08, y: index % 2 ? 28 : -28 }}
       animate={{
-        opacity: reduceMotion ? 0.96 : [0.92, 1, 0.92],
-        scale: reduceMotion ? 1 : [1, 1.035, 1],
+        opacity: 0.96,
+        scale: 1,
         y: reduceMotion ? 0 : index % 2 ? [0, 18, 0] : [0, -18, 0]
       }}
       transition={{
         opacity: { duration: 2.4, ease },
-        scale: { duration: 10 + index, repeat: Infinity, ease: "easeInOut" },
         y: { duration: 8 + index * 0.8, repeat: Infinity, ease: "easeInOut" }
       }}
     >
-      <motion.div
-        className="absolute -inset-10 rounded-[2.6rem] bg-[radial-gradient(circle,rgba(255,255,255,0.34),rgba(184,140,255,0.42)_34%,rgba(184,140,255,0.12)_54%,transparent_74%)] blur-3xl"
-        animate={{ opacity: reduceMotion ? 0.58 : [0.42, 0.72, 0.42], scale: reduceMotion ? 1 : [0.92, 1.08, 0.92] }}
-        transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <div className="relative h-full w-full overflow-hidden rounded-[1.65rem] border border-white/20 bg-black/20 shadow-[0_38px_120px_rgba(0,0,0,0.34),0_0_50px_rgba(184,140,255,0.16)]">
+      <div className="absolute -inset-6 rounded-[2.3rem] bg-[radial-gradient(circle,rgba(255,255,255,0.24),rgba(184,140,255,0.28)_38%,transparent_72%)] opacity-70" />
+      <div className="relative h-full w-full overflow-hidden rounded-[1.65rem] border border-white/20 bg-black/20 shadow-[0_30px_82px_rgba(0,0,0,0.34),0_0_30px_rgba(184,140,255,0.14)]">
         <Image
           src={image.src}
           alt={image.alt}
           fill
-          priority
+          priority={index < 2}
           sizes="(max-width: 768px) 50vw, 24vw"
           className={`object-cover brightness-[1.08] contrast-[1.1] saturate-[1.28] ${frames[index].position}`}
         />
