@@ -85,7 +85,7 @@ function HeroFrame({ image, index, smoothX, parallaxX, parallaxY, reduceMotion }
           src={image.src}
           alt={image.alt}
           fill
-          priority={index < 3}
+          priority
           sizes="(max-width: 768px) 50vw, 24vw"
           className={`object-cover brightness-[1.08] contrast-[1.1] saturate-[1.28] ${frames[index].position}`}
         />
