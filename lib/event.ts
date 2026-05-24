@@ -52,6 +52,6 @@ export const images = [
 export const music = {
   title: "Dilerim Ki",
   artist: "Dolu Kadehi Ters Tut",
-  src: "/music/dilerim-ki.mp3",
-  youtubeUrl: "https://www.youtube.com/results?search_query=Dolu+Kadehi+Ters+Tut+Dilerim+Ki+Official+Audio"
+  youtubeVideoId: "aDju79MtUR8",
+  youtubeUrl: "https://www.youtube.com/watch?v=aDju79MtUR8"
 } as const;

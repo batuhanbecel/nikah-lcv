@@ -11,9 +11,16 @@ export function CustomCursor() {
   const smoothY = useSpring(y, { damping: 28, stiffness: 260, mass: 0.4 });
 
   useEffect(() => {
-    const desktop = window.matchMedia("(pointer: fine) and (min-width: 768px)").matches;
-    window.requestAnimationFrame(() => setEnabled(desktop));
-    if (!desktop) return;
+    const desktop = window.matchMedia("(pointer: fine) and (min-width: 768px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const syncEnabled = () => {
+      const shouldEnable = desktop.matches && !reducedMotion.matches;
+      document.body.classList.toggle("cursor-hidden", shouldEnable);
+      setEnabled(shouldEnable);
+    };
+
+    window.requestAnimationFrame(syncEnabled);
 
     const move = (event: PointerEvent) => {
       x.set(event.clientX - 12);
@@ -21,7 +28,15 @@ export function CustomCursor() {
     };
 
     window.addEventListener("pointermove", move);
-    return () => window.removeEventListener("pointermove", move);
+    desktop.addEventListener("change", syncEnabled);
+    reducedMotion.addEventListener("change", syncEnabled);
+
+    return () => {
+      document.body.classList.remove("cursor-hidden");
+      window.removeEventListener("pointermove", move);
+      desktop.removeEventListener("change", syncEnabled);
+      reducedMotion.removeEventListener("change", syncEnabled);
+    };
   }, [x, y]);
 
   if (!enabled) return null;

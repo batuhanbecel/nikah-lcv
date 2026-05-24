@@ -1,5 +1,1 @@
-Place the licensed background music file here and name it:
-
-`dilerim-ki.mp3`
-
-You can also set `NEXT_PUBLIC_MUSIC_SRC` to another public URL or public asset path.
+The site uses a YouTube embed for background music and does not require local audio files here.

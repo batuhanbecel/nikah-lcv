@@ -25,20 +25,24 @@ function getTimeLeft(): TimeLeft {
 }
 
 export function CountdownSection() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(() => getTimeLeft());
+  const [timeLeft, setTimeLeft] = useState<TimeLeft | null>(null);
   const units = useMemo(
     () => [
-      ["Gün", timeLeft.days],
-      ["Saat", timeLeft.hours],
-      ["Dakika", timeLeft.minutes],
-      ["Saniye", timeLeft.seconds]
+      ["Gün", timeLeft?.days],
+      ["Saat", timeLeft?.hours],
+      ["Dakika", timeLeft?.minutes],
+      ["Saniye", timeLeft?.seconds]
     ],
     [timeLeft]
   );
 
   useEffect(() => {
+    const initial = window.setTimeout(() => setTimeLeft(getTimeLeft()), 0);
     const timer = window.setInterval(() => setTimeLeft(getTimeLeft()), 1000);
-    return () => window.clearInterval(timer);
+    return () => {
+      window.clearTimeout(initial);
+      window.clearInterval(timer);
+    };
   }, []);
 
   return (
@@ -65,7 +69,7 @@ export function CountdownSection() {
                   transition={{ duration: 0.35 }}
                   className="block font-serif text-5xl font-semibold md:text-7xl"
                 >
-                  {String(value).padStart(2, "0")}
+                  {typeof value === "number" ? String(value).padStart(2, "0") : "--"}
                 </motion.span>
               </AnimatePresence>
               <span className="mt-3 block text-xs font-semibold uppercase tracking-[0.28em] text-black/50">{label}</span>

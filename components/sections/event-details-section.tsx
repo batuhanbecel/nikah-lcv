@@ -32,7 +32,7 @@ export function EventDetailsSection() {
 
         <div className="mt-14 grid gap-4 md:grid-cols-3">
           {details.map((item) => (
-            <motion.div key={item.label} variants={motionItemVariants} className="glass rounded-2xl p-7">
+            <motion.div key={item.label} variants={motionItemVariants} className="glass rounded-2xl p-6 md:p-7">
               <item.icon className="h-6 w-6 text-purple" />
               <p className="mt-6 text-sm text-black/45">{item.label}</p>
               <p className="mt-2 font-serif text-3xl">{item.value}</p>
@@ -40,7 +40,7 @@ export function EventDetailsSection() {
           ))}
         </div>
 
-        <motion.div variants={motionItemVariants} className="mt-6 overflow-hidden rounded-[2rem] border border-black/10 shadow-[0_35px_100px_rgba(0,0,0,0.13)]">
+        <motion.div variants={motionItemVariants} className="mt-6 overflow-hidden rounded-3xl border border-black/10 shadow-[0_35px_100px_rgba(0,0,0,0.13)]">
           <iframe
             title="Beykoz Nikah Dairesi harita"
             src={event.mapsEmbed}

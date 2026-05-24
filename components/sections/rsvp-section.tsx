@@ -13,12 +13,14 @@ import { MotionSection, motionItemVariants } from "@/components/motion-section";
 type FormState = {
   name: string;
   surname: string;
+  phone: string;
   guestCount: string;
   afterParty: boolean;
+  note: string;
 };
 
 export function RsvpSection() {
-  const [form, setForm] = useState<FormState>({ name: "", surname: "", guestCount: "2", afterParty: true });
+  const [form, setForm] = useState<FormState>({ name: "", surname: "", phone: "", guestCount: "2", afterParty: true, note: "" });
   const [loading, setLoading] = useState(false);
 
   const submit = async (eventSubmit: FormEvent<HTMLFormElement>) => {
@@ -40,7 +42,7 @@ export function RsvpSection() {
       toast.success("Davet yanıtınız alındı.", {
         description: "Bu güzel günde sizi görmek için sabırsızlanıyoruz."
       });
-      setForm({ name: "", surname: "", guestCount: "2", afterParty: true });
+      setForm({ name: "", surname: "", phone: "", guestCount: "2", afterParty: true, note: "" });
     } catch (error) {
       toast.error("Kaydedilemedi", {
         description: error instanceof Error ? error.message : "Lütfen tekrar deneyin."
@@ -60,7 +62,7 @@ export function RsvpSection() {
           </p>
         </motion.div>
 
-        <motion.form onSubmit={submit} variants={motionItemVariants} className="glass rounded-[2rem] p-5 md:p-8">
+        <motion.form onSubmit={submit} variants={motionItemVariants} className="glass rounded-3xl p-5 md:p-8">
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <Label htmlFor="name">Ad</Label>
@@ -99,7 +101,18 @@ export function RsvpSection() {
                 className="mt-2"
               />
             </div>
-            <div className="rounded-3xl border border-black/10 bg-white/55 p-4">
+            <div>
+              <Label htmlFor="phone">Telefon</Label>
+              <Input
+                id="phone"
+                type="tel"
+                value={form.phone}
+                onChange={(eventChange) => setForm((current) => ({ ...current, phone: eventChange.target.value }))}
+                className="mt-2"
+                placeholder="05xx xxx xx xx"
+              />
+            </div>
+            <div className="rounded-2xl border border-black/10 bg-white/60 p-4">
               <Label htmlFor="afterParty" className="block">After Party Katılımı</Label>
               <div className="mt-4 flex items-center justify-between">
                 <span className="text-sm text-black/55">{form.afterParty ? "Katılıyorum" : "Katılmıyorum"}</span>
@@ -109,6 +122,16 @@ export function RsvpSection() {
                   onCheckedChange={(checked) => setForm((current) => ({ ...current, afterParty: checked }))}
                 />
               </div>
+            </div>
+            <div className="md:col-span-2">
+              <Label htmlFor="note">Not</Label>
+              <Input
+                id="note"
+                value={form.note}
+                onChange={(eventChange) => setForm((current) => ({ ...current, note: eventChange.target.value }))}
+                className="mt-2"
+                placeholder="Varsa iletmek istediğiniz bir not"
+              />
             </div>
           </div>
 

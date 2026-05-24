@@ -18,19 +18,18 @@ Copy `.env.example` to `.env.local` and set:
 ```bash
 GOOGLE_APPS_SCRIPT_WEBHOOK_URL="https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec"
 NEXT_PUBLIC_SITE_URL="https://your-domain.vercel.app"
-NEXT_PUBLIC_MUSIC_SRC="/music/beyza-batuhan-theme.mp3"
 ```
 
-Add a licensed copy of `Dolu Kadehi Ters Tut - Dilerim Ki` at `public/music/dilerim-ki.mp3`, or point `NEXT_PUBLIC_MUSIC_SRC` to another public asset.
-
-The music control cannot download or rehost copyrighted audio from YouTube. If the local MP3 is missing or blocked by the browser, the control falls back to opening YouTube.
+The music control uses an embedded YouTube player for `Dolu Kadehi Ters Tut - Dilerim Ki`. It does not download or rehost copyrighted audio.
 
 ## Google Sheets RSVP Setup
 
 1. Create a Google Sheet.
 2. Go to `Extensions > Apps Script`.
 3. Paste the code from `docs/google-apps-script.js`.
-4. Save the project.
+4. Run the `setup` function once and authorize it. This creates:
+   - `LCV Yanıtları` for every submission.
+   - `Özet` for total responses, total guests, after-party yes/no response counts, and after-party guest totals.
 5. Click `Deploy > New deployment`.
 6. Select `Web app`.
 7. Set `Execute as` to `Me`.
@@ -40,7 +39,7 @@ The music control cannot download or rehost copyrighted audio from YouTube. If t
 
 The script writes:
 
-`Timestamp | Name | Surname | Kişi Sayısı | After Party`
+`Timestamp | Ad | Soyad | Telefon | Kişi Sayısı | After Party | Not | Kaynak | Kullanıcı Aracı`
 
 ## Vercel Deployment
 
