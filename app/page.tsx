@@ -6,7 +6,7 @@ import { RsvpSection } from "@/components/sections/rsvp-section";
 
 export default function Home() {
   return (
-    <main className="overflow-hidden bg-white">
+    <main className="overflow-hidden bg-background text-foreground">
       <HeroSection />
       <CountdownSection />
       <EventDetailsSection />

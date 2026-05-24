@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #050505;
-  --muted: #6d6875;
-  --purple: #6f3dc5;
-  --purple-dark: #3c1779;
-  --purple-soft: #efe8ff;
-  --border: rgba(10, 10, 10, 0.1);
+  --background: #07050d;
+  --foreground: #f8f4ff;
+  --muted: #b9accb;
+  --purple: #b88cff;
+  --purple-dark: #7c4de2;
+  --purple-soft: #2a1848;
+  --border: rgba(255, 255, 255, 0.13);
   --serif: var(--font-serif);
   --sans: var(--font-sans);
 }
@@ -33,7 +33,9 @@ html {
 
 body {
   margin: 0;
-  background: var(--background);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(95, 58, 160, 0.24), transparent 34rem),
+    linear-gradient(180deg, #0b0714 0%, #07050d 54%, #0e0818 100%);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, sans-serif;
 }
@@ -57,10 +59,16 @@ body.cursor-hidden [role="button"] {
 }
 
 .glass {
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.68);
-  box-shadow: 0 24px 80px rgba(14, 8, 25, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(20, 13, 31, 0.72);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
   backdrop-filter: blur(20px);
+}
+
+.dark-panel {
+  border-color: rgba(255, 255, 255, 0.14);
+  background: rgba(17, 10, 29, 0.94);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.44);
 }
 
 .grain {
@@ -68,8 +76,8 @@ body.cursor-hidden [role="button"] {
   position: fixed;
   inset: 0;
   z-index: 70;
-  opacity: 0.18;
-  mix-blend-mode: soft-light;
+  opacity: 0.12;
+  mix-blend-mode: screen;
   background-image:
     radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.22) 0 1px, transparent 1px),
     radial-gradient(circle at 70% 60%, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px);
@@ -77,7 +85,7 @@ body.cursor-hidden [role="button"] {
 }
 
 .purple-glow {
-  box-shadow: 0 0 0 1px rgba(111, 61, 197, 0.16), 0 22px 70px rgba(111, 61, 197, 0.22);
+  box-shadow: 0 0 0 1px rgba(184, 140, 255, 0.18), 0 22px 70px rgba(76, 43, 139, 0.28);
 }
 
 .section-shell {

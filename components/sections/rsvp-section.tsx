@@ -53,16 +53,16 @@ export function RsvpSection() {
   };
 
   return (
-    <MotionSection id="rsvp" className="bg-[linear-gradient(180deg,#fff,#f8f3ff)]">
+    <MotionSection id="rsvp" className="bg-[linear-gradient(180deg,#08050d,#120a1f)]">
       <div className="section-shell grid items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
         <motion.div variants={motionItemVariants}>
-          <h2 className="font-serif text-5xl leading-tight md:text-7xl">Yanımızda olacağınızı bilmek isteriz.</h2>
-          <p className="mt-6 max-w-md text-lg leading-8 text-black/60">
+          <h2 className="font-serif text-5xl leading-tight text-white md:text-7xl">Yanımızda olacağınızı bilmek isteriz.</h2>
+          <p className="mt-6 max-w-md text-lg leading-8 text-white/62">
             Davet planlamasını en zarif şekilde tamamlayabilmemiz için katılım bilginizi paylaşabilirsiniz.
           </p>
         </motion.div>
 
-        <motion.form onSubmit={submit} variants={motionItemVariants} className="glass rounded-3xl p-5 md:p-8">
+        <motion.form onSubmit={submit} variants={motionItemVariants} className="glass dark-panel rounded-3xl p-5 text-white md:p-8">
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <Label htmlFor="name">Ad</Label>
@@ -112,10 +112,10 @@ export function RsvpSection() {
                 placeholder="05xx xxx xx xx"
               />
             </div>
-            <div className="rounded-2xl border border-black/10 bg-white/60 p-4">
+            <div className="rounded-2xl border border-white/12 bg-white/[0.06] p-4">
               <Label htmlFor="afterParty" className="block">After Party Katılımı</Label>
               <div className="mt-4 flex items-center justify-between">
-                <span className="text-sm text-black/55">{form.afterParty ? "Katılıyorum" : "Katılmıyorum"}</span>
+                <span className="text-sm text-white/58">{form.afterParty ? "Katılıyorum" : "Katılmıyorum"}</span>
                 <Switch
                   id="afterParty"
                   checked={form.afterParty}
