@@ -61,7 +61,7 @@ function HeroFrame({ image, index, smoothX, parallaxX, parallaxY, reduceMotion }
         x: reduceMotion ? 0 : frameX,
         y: reduceMotion ? 0 : index % 2 ? parallaxY : parallaxX,
         zIndex: 5 + index,
-        filter: "drop-shadow(0 30px 70px rgba(0,0,0,0.34))"
+        filter: "drop-shadow(0 38px 92px rgba(0,0,0,0.34)) drop-shadow(0 0 34px rgba(184,140,255,0.18))"
       }}
       initial={reduceMotion ? { opacity: 0.78 } : { opacity: 0, scale: 1.08, y: index % 2 ? 28 : -28 }}
       animate={{
@@ -76,20 +76,20 @@ function HeroFrame({ image, index, smoothX, parallaxX, parallaxY, reduceMotion }
       }}
     >
       <motion.div
-        className="absolute -inset-7 rounded-[2.2rem] bg-[radial-gradient(circle,rgba(255,255,255,0.2),rgba(184,140,255,0.22)_36%,transparent_68%)] blur-2xl"
-        animate={{ opacity: reduceMotion ? 0.38 : [0.24, 0.48, 0.24], scale: reduceMotion ? 1 : [0.94, 1.06, 0.94] }}
+        className="absolute -inset-10 rounded-[2.6rem] bg-[radial-gradient(circle,rgba(255,255,255,0.34),rgba(184,140,255,0.42)_34%,rgba(184,140,255,0.12)_54%,transparent_74%)] blur-3xl"
+        animate={{ opacity: reduceMotion ? 0.58 : [0.42, 0.72, 0.42], scale: reduceMotion ? 1 : [0.92, 1.08, 0.92] }}
         transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }}
       />
-      <div className="relative h-full w-full overflow-hidden rounded-[1.65rem] border border-white/18 bg-black/20 shadow-[0_34px_110px_rgba(0,0,0,0.42)]">
+      <div className="relative h-full w-full overflow-hidden rounded-[1.65rem] border border-white/20 bg-black/20 shadow-[0_38px_120px_rgba(0,0,0,0.34),0_0_50px_rgba(184,140,255,0.16)]">
         <Image
           src={image.src}
           alt={image.alt}
           fill
           priority={index < 3}
           sizes="(max-width: 768px) 50vw, 24vw"
-          className={`object-cover contrast-[1.08] saturate-[1.22] ${frames[index].position}`}
+          className={`object-cover brightness-[1.08] contrast-[1.1] saturate-[1.28] ${frames[index].position}`}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/24 via-transparent to-white/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/14 via-transparent to-white/14" />
         <div className="absolute inset-0 ring-1 ring-inset ring-white/20" />
       </div>
     </motion.div>
@@ -130,7 +130,7 @@ export function HeroSection() {
 
       <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_48%,rgba(7,5,13,0.46),rgba(7,5,13,0.22)_32%,transparent_58%),linear-gradient(180deg,rgba(7,5,13,0.2),rgba(7,5,13,0.4))]" />
       <div className="absolute inset-x-0 top-0 z-20 h-44 bg-gradient-to-b from-black/42 to-transparent" />
-      <div className="absolute inset-x-0 -bottom-72 z-20 h-[36rem] bg-gradient-to-b from-transparent via-[#07050d]/88 to-[#07050d]" />
+      <div className="absolute inset-x-0 bottom-0 z-20 h-[34rem] bg-[linear-gradient(180deg,transparent_0%,rgba(7,5,13,0.52)_38%,#07050d_88%)]" />
 
       <motion.div
         variants={stagger}
@@ -138,12 +138,12 @@ export function HeroSection() {
         animate="visible"
         className="section-shell relative z-30 px-1 text-center"
       >
-        <motion.p variants={fadeUp} className="mb-6 text-xs font-semibold uppercase tracking-[0.45em] text-purple">
+        <motion.p variants={fadeUp} className="purple-bloom mb-6 text-xs font-semibold uppercase tracking-[0.45em] text-purple">
           17 Ekim 2026
         </motion.p>
         <motion.h1
           variants={fadeUp}
-          className="font-serif text-[clamp(3.15rem,13vw,8.4rem)] font-semibold leading-[0.78] tracking-normal text-white drop-shadow-[0_20px_46px_rgba(0,0,0,0.62)] sm:text-[clamp(4rem,10vw,8.8rem)]"
+          className="font-serif text-[clamp(3.15rem,13vw,8.4rem)] font-semibold leading-[0.78] tracking-normal text-white drop-shadow-[0_0_36px_rgba(255,255,255,0.16)] sm:text-[clamp(4rem,10vw,8.8rem)]"
         >
           <span className="block">Beyza</span>
           <span className="my-1 block text-[0.54em] leading-none text-purple drop-shadow-[0_0_28px_rgba(184,140,255,0.34)] sm:my-2">

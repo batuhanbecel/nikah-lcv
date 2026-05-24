@@ -56,14 +56,14 @@ export function RsvpSection() {
     <MotionSection id="rsvp" className="overflow-hidden">
       <div className="section-veil" aria-hidden="true" />
       <div className="section-shell grid items-center gap-12 md:grid-cols-[0.9fr_1.1fr]">
-        <motion.div variants={motionItemVariants}>
+        <motion.div variants={motionItemVariants} className="text-center md:text-left">
           <h2 className="font-serif text-5xl leading-tight text-white md:text-7xl">Yanımızda olacağınızı bilmek isteriz.</h2>
-          <p className="mt-6 max-w-md text-lg leading-8 text-white/62">
+          <p className="mx-auto mt-6 max-w-md text-lg leading-8 text-white/64 md:mx-0">
             Davet planlamasını en zarif şekilde tamamlayabilmemiz için katılım bilginizi paylaşabilirsiniz.
           </p>
         </motion.div>
 
-        <motion.form onSubmit={submit} variants={motionItemVariants} className="glass dark-panel rounded-3xl p-5 text-white md:p-8">
+        <motion.form onSubmit={submit} variants={motionItemVariants} className="glass dark-panel rounded-3xl p-5 text-white shadow-[0_30px_110px_rgba(0,0,0,0.42),0_0_56px_rgba(184,140,255,0.1)] md:p-8">
           <div className="grid gap-5 md:grid-cols-2">
             <div>
               <Label htmlFor="name">Ad</Label>
@@ -113,9 +113,9 @@ export function RsvpSection() {
                 placeholder="05xx xxx xx xx"
               />
             </div>
-            <div className="rounded-2xl border border-white/12 bg-white/[0.06] p-4 md:col-span-2">
+            <div className="rounded-2xl border border-white/[0.09] bg-white/[0.06] p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_0_30px_rgba(184,140,255,0.06)] md:col-span-2">
               <Label htmlFor="afterParty" className="block">After Party Katılımı</Label>
-              <div className="mt-4 flex min-h-12 items-center justify-between gap-5 rounded-full border border-white/10 bg-white/[0.045] px-5">
+              <div className="mt-4 flex min-h-12 w-full items-center justify-between gap-5 rounded-full border border-white/[0.08] bg-white/[0.045] px-5">
                 <span className="text-sm text-white/58">{form.afterParty ? "Katılıyorum" : "Katılmıyorum"}</span>
                 <Switch
                   id="afterParty"

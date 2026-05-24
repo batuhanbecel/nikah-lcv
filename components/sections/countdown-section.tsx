@@ -47,25 +47,26 @@ export function CountdownSection() {
 
   return (
     <MotionSection className="-mt-32 overflow-hidden pt-56 md:-mt-40 md:pt-64">
+      <div className="hero-countdown-fade" aria-hidden="true" />
       <div className="section-veil" aria-hidden="true" />
       <div className="section-shell relative">
         <div className="grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr]">
-          <motion.div variants={motionItemVariants}>
-            <p className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.38em] text-purple">
+          <motion.div variants={motionItemVariants} className="text-center lg:text-left">
+            <p className="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.38em] text-purple lg:justify-start">
               <Heart className="h-4 w-4 fill-purple/30" />
               Geri Sayım
             </p>
-            <h2 className="mt-5 max-w-2xl font-serif text-5xl leading-[0.95] text-white md:text-7xl">
+            <h2 className="mx-auto mt-5 max-w-2xl font-serif text-5xl leading-[0.95] text-white lg:mx-0 md:text-7xl">
               O güne kalan zarif heyecan
             </h2>
-            <p className="mt-6 max-w-md text-base leading-8 text-white/58 md:text-lg">
+            <p className="mx-auto mt-6 max-w-md text-base leading-8 text-white/62 lg:mx-0 md:text-lg">
               Her saniye biraz daha yaklaşan, sakin ama büyülü bir bekleyiş.
             </p>
           </motion.div>
 
           <motion.div
             variants={motionItemVariants}
-            className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.045] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.34)] backdrop-blur-xl md:p-6"
+            className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-white/[0.045] p-4 shadow-[0_28px_100px_rgba(0,0,0,0.34),0_0_58px_rgba(184,140,255,0.1)] backdrop-blur-xl md:p-6"
           >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(184,140,255,0.18),transparent_32%),linear-gradient(135deg,rgba(255,255,255,0.08),transparent_52%)]" />
             <div className="relative grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
@@ -73,9 +74,9 @@ export function CountdownSection() {
                 <motion.div
                   variants={motionItemVariants}
                   key={label}
-                  className="group rounded-[1.35rem] border border-white/12 bg-[#120b20]/86 p-5 text-center text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] md:p-6"
+                  className="group rounded-[1.35rem] border border-white/[0.08] bg-[#120b20]/86 p-5 text-center text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_32px_rgba(184,140,255,0.07)] md:p-6"
                 >
-                  <span className="mx-auto mb-5 block h-px w-10 bg-purple/42 transition group-hover:w-14" />
+                  <span className="mx-auto mb-5 block h-1 w-1 rounded-full bg-purple/70 shadow-[0_0_18px_rgba(184,140,255,0.55)] transition group-hover:scale-125" />
                   <AnimatePresence mode="popLayout">
                     <motion.span
                       key={value}

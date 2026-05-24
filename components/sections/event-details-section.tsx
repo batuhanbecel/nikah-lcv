@@ -1,8 +1,7 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { Calendar, Clock, MapPin, Navigation } from "lucide-react";
-import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { MotionSection, motionItemVariants } from "@/components/motion-section";
 import { event } from "@/lib/event";
@@ -14,18 +13,11 @@ const details = [
 ];
 
 export function EventDetailsSection() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], [-40, 40]);
-
   return (
     <MotionSection id="details" className="overflow-hidden">
       <div className="section-veil" aria-hidden="true" />
-      <motion.div
-        style={{ y }}
-        className="absolute inset-x-0 top-20 h-72 bg-[radial-gradient(circle_at_50%_50%,rgba(184,140,255,0.13),transparent_62%)]"
-      />
-      <div className="section-shell relative" ref={ref}>
+      <div className="absolute inset-x-0 top-12 h-96 bg-[radial-gradient(ellipse_at_50%_42%,rgba(184,140,255,0.11),rgba(184,140,255,0.04)_38%,transparent_72%)] blur-2xl" aria-hidden="true" />
+      <div className="section-shell relative">
         <motion.div variants={motionItemVariants} className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.38em] text-purple">Detaylar</p>
           <h2 className="mt-5 font-serif text-5xl leading-tight text-white md:text-7xl">Bu anı birlikte yaşayalım.</h2>
@@ -36,7 +28,7 @@ export function EventDetailsSection() {
             <motion.div
               key={item.label}
               variants={motionItemVariants}
-              className="glass dark-panel flex min-h-44 flex-col items-center justify-center rounded-2xl p-6 text-center text-white md:p-7"
+              className="glass dark-panel flex min-h-44 flex-col items-center justify-center rounded-2xl p-6 text-center text-white shadow-[0_26px_86px_rgba(0,0,0,0.38),0_0_38px_rgba(184,140,255,0.08)] md:p-7"
             >
               <item.icon className="h-6 w-6 text-purple drop-shadow-[0_0_18px_rgba(184,140,255,0.38)]" />
               <p className="mt-5 text-sm text-white/46">{item.label}</p>
@@ -45,7 +37,7 @@ export function EventDetailsSection() {
           ))}
         </div>
 
-        <motion.div variants={motionItemVariants} className="mt-6 overflow-hidden rounded-3xl border border-white/12 shadow-[0_35px_100px_rgba(0,0,0,0.38)]">
+        <motion.div variants={motionItemVariants} className="mt-6 overflow-hidden rounded-3xl border border-white/[0.07] shadow-[0_35px_110px_rgba(0,0,0,0.4),0_0_42px_rgba(184,140,255,0.08)]">
           <iframe
             title="Beykoz Nikah Dairesi harita"
             src={event.mapsEmbed}
