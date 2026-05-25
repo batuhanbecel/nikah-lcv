@@ -19,12 +19,12 @@ const frames = [
     depth: 26
   },
   {
-    className: "left-[10%] bottom-[7%] h-[32vh] w-[22vw] min-w-40 rotate-[5deg]",
+    className: "left-[10%] bottom-[15%] h-[32vh] w-[22vw] min-w-40 rotate-[5deg]",
     position: "object-[50%_36%]",
     depth: 14
   },
   {
-    className: "right-[10%] bottom-[9%] h-[31vh] w-[25vw] min-w-48 rotate-[-5deg]",
+    className: "right-[10%] bottom-[16%] h-[31vh] w-[25vw] min-w-48 rotate-[-5deg]",
     position: "object-[50%_44%]",
     depth: 22
   },
@@ -34,7 +34,7 @@ const frames = [
     depth: 10
   },
   {
-    className: "right-[39%] bottom-[3%] h-[23vh] w-[18vw] min-w-36 rotate-[-4deg]",
+    className: "right-[39%] bottom-[13%] h-[23vh] w-[18vw] min-w-36 rotate-[-4deg]",
     position: "object-[50%_45%]",
     depth: 16
   }
@@ -101,7 +101,7 @@ export function HeroSection() {
   const parallaxY = useTransform(smoothY, [-0.5, 0.5], [-18, 18]);
   return (
     <section
-      className="relative grid min-h-[100svh] place-items-center overflow-hidden py-24 text-white md:py-20"
+      className="relative grid min-h-[108svh] place-items-center overflow-hidden py-24 text-white md:min-h-[112svh] md:py-20"
       onMouseMove={(eventMove) => {
         if (reduceMotion) return;
         const rect = eventMove.currentTarget.getBoundingClientRect();
@@ -125,6 +125,7 @@ export function HeroSection() {
 
       <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_48%,rgba(7,5,13,0.48),rgba(7,5,13,0.24)_34%,transparent_62%),linear-gradient(180deg,rgba(7,5,13,0.22),rgba(7,5,13,0.3)_58%,transparent_100%)]" />
       <div className="absolute inset-x-0 top-0 z-20 h-44 bg-gradient-to-b from-black/42 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 z-20 h-[42svh] bg-[linear-gradient(180deg,transparent_0%,rgba(7,5,13,0.42)_46%,rgba(9,5,17,0.24)_78%,transparent_100%)]" />
 
       <div className="section-shell relative z-30 px-1 text-center">
         <p className="purple-bloom mb-6 text-xs font-semibold uppercase tracking-[0.45em] text-purple">

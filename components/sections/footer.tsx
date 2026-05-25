@@ -15,7 +15,6 @@ export function Footer() {
       />
       <div className="relative">
         <p className="font-serif text-5xl leading-none drop-shadow-[0_0_30px_rgba(255,255,255,0.12)]">{event.couple}</p>
-        <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-white/58">Bir masalın en güzel satırında buluşmak üzere.</p>
         <p className="mt-5 text-sm uppercase tracking-[0.34em] text-purple">{event.dateLabel}</p>
       </div>
     </footer>

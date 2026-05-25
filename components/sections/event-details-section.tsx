@@ -14,8 +14,7 @@ const details = [
 
 export function EventDetailsSection() {
   return (
-    <MotionSection id="details" className="overflow-hidden pt-20 md:pt-24">
-      <div className="fairy-transition" aria-hidden="true" />
+    <MotionSection id="details" className="overflow-hidden pt-12 md:pt-16">
       <div className="section-shell relative">
         <motion.div variants={motionItemVariants} className="mx-auto max-w-3xl text-center">
           <p className="text-xs font-semibold uppercase tracking-[0.38em] text-purple">Detaylar</p>
