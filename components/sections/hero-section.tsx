@@ -5,7 +5,7 @@ import { motion, type MotionValue, useMotionValue, useReducedMotion, useSpring, 
 import { CalendarDays, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { event, images } from "@/lib/event";
-import { ease, fadeUp, stagger } from "@/lib/motion";
+import { ease } from "@/lib/motion";
 
 const frames = [
   {
@@ -101,7 +101,7 @@ export function HeroSection() {
   const parallaxY = useTransform(smoothY, [-0.5, 0.5], [-18, 18]);
   return (
     <section
-      className="relative grid min-h-[108svh] place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_34%,rgba(126,78,226,0.24),transparent_28rem),linear-gradient(180deg,#090511_0%,#120a1f_48%,#07050d_100%)] text-white"
+      className="relative grid min-h-[100svh] place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_34%,rgba(126,78,226,0.24),transparent_28rem),linear-gradient(180deg,#090511_0%,#120a1f_48%,#07050d_100%)] py-24 text-white md:py-20"
       onMouseMove={(eventMove) => {
         if (reduceMotion) return;
         const rect = eventMove.currentTarget.getBoundingClientRect();
@@ -125,19 +125,13 @@ export function HeroSection() {
 
       <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_48%,rgba(7,5,13,0.46),rgba(7,5,13,0.22)_32%,transparent_58%),linear-gradient(180deg,rgba(7,5,13,0.2),rgba(7,5,13,0.4))]" />
       <div className="absolute inset-x-0 top-0 z-20 h-44 bg-gradient-to-b from-black/42 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 z-20 h-[34rem] bg-[linear-gradient(180deg,transparent_0%,rgba(7,5,13,0.52)_38%,#07050d_88%)]" />
+      <div className="absolute inset-x-0 bottom-0 z-20 h-[24rem] bg-[linear-gradient(180deg,transparent_0%,rgba(7,5,13,0.48)_42%,#07050d_94%)]" />
 
-      <motion.div
-        variants={stagger}
-        initial="hidden"
-        animate="visible"
-        className="section-shell relative z-30 px-1 text-center"
-      >
-        <motion.p variants={fadeUp} className="purple-bloom mb-6 text-xs font-semibold uppercase tracking-[0.45em] text-purple">
+      <div className="section-shell relative z-30 px-1 text-center">
+        <p className="purple-bloom mb-6 text-xs font-semibold uppercase tracking-[0.45em] text-purple">
           17 Ekim 2026
-        </motion.p>
-        <motion.h1
-          variants={fadeUp}
+        </p>
+        <h1
           className="font-serif text-[clamp(3.15rem,13vw,8.4rem)] font-semibold leading-[0.78] tracking-normal text-white drop-shadow-[0_0_36px_rgba(255,255,255,0.16)] sm:text-[clamp(4rem,10vw,8.8rem)]"
         >
           <span className="block">Beyza</span>
@@ -145,8 +139,8 @@ export function HeroSection() {
             &
           </span>
           <span className="block">Batuhan</span>
-        </motion.h1>
-        <motion.div variants={fadeUp} className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 text-sm leading-6 text-white/68 md:flex-row">
+        </h1>
+        <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center justify-center gap-3 text-sm leading-6 text-white/68 md:flex-row">
           <span className="inline-flex items-center justify-center gap-2">
             <CalendarDays className="h-4 w-4 text-purple" />
             {event.dateLabel} — Saat {event.timeLabel}
@@ -156,8 +150,8 @@ export function HeroSection() {
             <MapPin className="h-4 w-4 text-purple" />
             {event.venue}
           </span>
-        </motion.div>
-        <motion.div variants={fadeUp} className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+        </div>
+        <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
           <motion.div whileHover={{ y: -3, scale: 1.02 }} whileTap={{ scale: 0.98 }}>
             <Button asChild>
               <a href="#rsvp">Davete Katıl</a>
@@ -168,19 +162,9 @@ export function HeroSection() {
               <a href="#details">Konumu Gör</a>
             </Button>
           </motion.div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
-      <motion.div
-        className="absolute bottom-8 left-1/2 z-30 h-12 w-px -translate-x-1/2 overflow-hidden bg-purple/18"
-        aria-hidden="true"
-      >
-        <motion.div
-          className="h-5 w-px bg-purple"
-          animate={{ y: [-20, 52] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-        />
-      </motion.div>
     </section>
   );
 }

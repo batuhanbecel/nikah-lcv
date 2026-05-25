@@ -107,13 +107,13 @@ body.cursor-hidden [role="button"] {
 .hero-countdown-fade {
   position: absolute;
   inset-inline: 0;
-  top: -38rem;
-  height: 62rem;
+  top: -22rem;
+  height: 38rem;
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(ellipse at 50% 12%, rgba(184, 140, 255, 0.11), transparent 36rem),
-    linear-gradient(180deg, #07050d 0%, #07050d 28%, rgba(7, 5, 13, 0.92) 48%, rgba(7, 5, 13, 0.5) 72%, transparent 100%);
+    radial-gradient(ellipse at 50% 10%, rgba(184, 140, 255, 0.1), transparent 30rem),
+    linear-gradient(180deg, #07050d 0%, rgba(7, 5, 13, 0.96) 38%, rgba(7, 5, 13, 0.62) 70%, transparent 100%);
 }
 
 .site-main h1,

@@ -46,7 +46,7 @@ export function CountdownSection() {
   }, []);
 
   return (
-    <MotionSection className="-mt-32 overflow-hidden pt-56 md:-mt-40 md:pt-64">
+    <MotionSection className="-mt-24 overflow-hidden py-16 pt-20 md:-mt-28 md:py-20 md:pt-28 lg:pt-32">
       <div className="hero-countdown-fade" aria-hidden="true" />
       <div className="section-veil" aria-hidden="true" />
       <div className="section-shell relative">
