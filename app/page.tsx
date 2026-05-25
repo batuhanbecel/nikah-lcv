@@ -1,5 +1,4 @@
 import { FloatingHearts } from "@/components/floating-hearts";
-import { CountdownSection } from "@/components/sections/countdown-section";
 import { EventDetailsSection } from "@/components/sections/event-details-section";
 import { Footer } from "@/components/sections/footer";
 import { HeroSection } from "@/components/sections/hero-section";
@@ -10,7 +9,6 @@ export default function Home() {
     <main className="site-main overflow-hidden text-foreground">
       <FloatingHearts />
       <HeroSection />
-      <CountdownSection />
       <EventDetailsSection />
       <RsvpSection />
       <Footer />
