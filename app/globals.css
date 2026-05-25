@@ -94,6 +94,22 @@ body.cursor-hidden [role="button"] {
   mix-blend-mode: screen;
 }
 
+.site-main::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.48;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(255, 255, 255, 0.34) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 12%, rgba(184, 140, 255, 0.36) 0 1px, transparent 2px),
+    radial-gradient(circle at 34% 62%, rgba(255, 255, 255, 0.22) 0 1px, transparent 2px),
+    radial-gradient(circle at 88% 78%, rgba(184, 140, 255, 0.24) 0 1px, transparent 2px);
+  background-size: 420px 520px, 520px 460px, 480px 560px, 560px 500px;
+  background-position: 0 0, 80px 120px, 140px 40px, 40px 220px;
+}
+
 .section-veil {
   position: absolute;
   inset: -34% 0;
@@ -211,6 +227,17 @@ body.cursor-hidden [role="button"] {
 
 .purple-glow {
   box-shadow: 0 0 0 1px rgba(184, 140, 255, 0.2), 0 22px 70px rgba(76, 43, 139, 0.3), 0 0 54px rgba(184, 140, 255, 0.14);
+}
+
+.fairy-transition {
+  position: absolute;
+  inset-inline: 0;
+  top: -10rem;
+  height: 22rem;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(184, 140, 255, 0.12), transparent 34rem),
+    radial-gradient(ellipse at 50% 72%, rgba(255, 255, 255, 0.045), transparent 28rem);
 }
 
 .section-shell {
