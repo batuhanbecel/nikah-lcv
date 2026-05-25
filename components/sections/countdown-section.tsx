@@ -50,16 +50,10 @@ export function CountdownSection() {
       <div className="section-shell relative">
         <div className="grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <motion.div variants={motionItemVariants} className="text-center lg:text-left">
-            <p className="inline-flex items-center justify-center gap-2 text-xs font-semibold uppercase tracking-[0.38em] text-purple lg:justify-start">
+            <h2 className="inline-flex items-center justify-center gap-3 font-serif text-5xl leading-[0.95] text-white lg:justify-start md:text-7xl">
               <Heart className="h-4 w-4 fill-purple/30" />
               Geri Sayım
-            </p>
-            <h2 className="mx-auto mt-5 max-w-2xl font-serif text-5xl leading-[0.95] text-white lg:mx-0 md:text-7xl">
-              O güne kalan zarif heyecan
             </h2>
-            <p className="mx-auto mt-6 max-w-md text-base leading-8 text-white/62 lg:mx-0 md:text-lg">
-              Her saniye biraz daha yaklaşan, sakin ama büyülü bir bekleyiş.
-            </p>
           </motion.div>
 
           <motion.div
