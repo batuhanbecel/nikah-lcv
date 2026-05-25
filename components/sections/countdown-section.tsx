@@ -46,8 +46,7 @@ export function CountdownSection() {
   }, []);
 
   return (
-    <MotionSection className="-mt-16 overflow-hidden py-16 pt-10 md:-mt-20 md:py-20 md:pt-14 lg:-mt-24 lg:pt-16">
-      <div className="section-veil" aria-hidden="true" />
+    <MotionSection className="overflow-hidden py-16 pt-12 md:py-20 md:pt-16 lg:pt-20">
       <div className="section-shell relative">
         <div className="grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr]">
           <motion.div variants={motionItemVariants} className="text-center lg:text-left">
