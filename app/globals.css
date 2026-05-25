@@ -104,18 +104,6 @@ body.cursor-hidden [role="button"] {
   opacity: 0.74;
 }
 
-.hero-countdown-fade {
-  position: absolute;
-  inset-inline: 0;
-  top: -22rem;
-  height: 38rem;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse at 50% 10%, rgba(184, 140, 255, 0.1), transparent 30rem),
-    linear-gradient(180deg, #07050d 0%, rgba(7, 5, 13, 0.96) 38%, rgba(7, 5, 13, 0.62) 70%, transparent 100%);
-}
-
 .site-main h1,
 .site-main h2,
 .site-main h3 {

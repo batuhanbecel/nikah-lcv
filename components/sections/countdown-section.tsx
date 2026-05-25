@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { MotionSection, motionItemVariants } from "@/components/motion-section";
@@ -46,8 +46,7 @@ export function CountdownSection() {
   }, []);
 
   return (
-    <MotionSection className="-mt-24 overflow-hidden py-16 pt-20 md:-mt-28 md:py-20 md:pt-28 lg:pt-32">
-      <div className="hero-countdown-fade" aria-hidden="true" />
+    <MotionSection className="-mt-16 overflow-hidden py-16 pt-10 md:-mt-20 md:py-20 md:pt-14 lg:-mt-24 lg:pt-16">
       <div className="section-veil" aria-hidden="true" />
       <div className="section-shell relative">
         <div className="grid items-center gap-10 lg:grid-cols-[0.82fr_1.18fr]">
@@ -77,18 +76,14 @@ export function CountdownSection() {
                   className="group rounded-[1.35rem] border border-white/[0.08] bg-[#120b20]/86 p-5 text-center text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_32px_rgba(184,140,255,0.07)] md:p-6"
                 >
                   <span className="mx-auto mb-5 block h-1 w-1 rounded-full bg-purple/70 shadow-[0_0_18px_rgba(184,140,255,0.55)] transition group-hover:scale-125" />
-                  <AnimatePresence mode="popLayout">
-                    <motion.span
-                      key={value}
-                      initial={{ opacity: 0, y: 12, filter: "blur(5px)" }}
-                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      exit={{ opacity: 0, y: -12, filter: "blur(5px)" }}
-                      transition={{ duration: 0.35, delay: index * 0.03 }}
-                      className="block font-serif text-5xl font-semibold leading-none md:text-7xl"
-                    >
-                      {typeof value === "number" ? String(value).padStart(2, "0") : "--"}
-                    </motion.span>
-                  </AnimatePresence>
+                  <motion.span
+                    key={label}
+                    animate={{ opacity: typeof value === "number" ? 1 : 0.58 }}
+                    transition={{ duration: 0.18, delay: index * 0.02 }}
+                    className="block font-serif text-5xl font-semibold leading-none md:text-7xl"
+                  >
+                    {typeof value === "number" ? String(value).padStart(2, "0") : "--"}
+                  </motion.span>
                   <span className="mt-4 block text-xs font-semibold uppercase tracking-[0.28em] text-white/48">{label}</span>
                 </motion.div>
               ))}

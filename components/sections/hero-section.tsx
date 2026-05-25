@@ -101,7 +101,7 @@ export function HeroSection() {
   const parallaxY = useTransform(smoothY, [-0.5, 0.5], [-18, 18]);
   return (
     <section
-      className="relative grid min-h-[100svh] place-items-center overflow-hidden bg-[radial-gradient(circle_at_50%_34%,rgba(126,78,226,0.24),transparent_28rem),linear-gradient(180deg,#090511_0%,#120a1f_48%,#07050d_100%)] py-24 text-white md:py-20"
+      className="relative grid min-h-[100svh] place-items-center overflow-hidden py-24 text-white md:py-20"
       onMouseMove={(eventMove) => {
         if (reduceMotion) return;
         const rect = eventMove.currentTarget.getBoundingClientRect();
@@ -123,9 +123,8 @@ export function HeroSection() {
         ))}
       </div>
 
-      <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_48%,rgba(7,5,13,0.46),rgba(7,5,13,0.22)_32%,transparent_58%),linear-gradient(180deg,rgba(7,5,13,0.2),rgba(7,5,13,0.4))]" />
+      <div className="absolute inset-0 z-20 bg-[radial-gradient(circle_at_50%_48%,rgba(7,5,13,0.48),rgba(7,5,13,0.24)_34%,transparent_62%),linear-gradient(180deg,rgba(7,5,13,0.22),rgba(7,5,13,0.3)_58%,transparent_100%)]" />
       <div className="absolute inset-x-0 top-0 z-20 h-44 bg-gradient-to-b from-black/42 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 z-20 h-[24rem] bg-[linear-gradient(180deg,transparent_0%,rgba(7,5,13,0.48)_42%,#07050d_94%)]" />
 
       <div className="section-shell relative z-30 px-1 text-center">
         <p className="purple-bloom mb-6 text-xs font-semibold uppercase tracking-[0.45em] text-purple">
@@ -164,7 +163,6 @@ export function HeroSection() {
           </motion.div>
         </div>
       </div>
-
     </section>
   );
 }
